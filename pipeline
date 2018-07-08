@@ -1,0 +1,19 @@
+node()
+{
+    stage ('SCM')
+    {
+        git 'https://github.com/RajeswariChiruvella95/project.git'
+
+    }
+    
+    stage ('Restore Nuget')
+    {
+     bat '"c:\\\\tools\\\\nuget.exe" restore SeleniumNUnitParam.sln'
+
+    }
+    
+    stage ('build')
+    {
+    bat "\"${tool 'MSBuild'}\" SeleniumNUnitParam.sln" 
+    }
+}
